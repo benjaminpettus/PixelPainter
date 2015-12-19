@@ -1,0 +1,43 @@
+.container,
+.swatch, 
+.grid,
+.cell {
+  width: 108px;
+  border: 1px solid black;
+}
+.canvasGrid,
+.canvasContainer,
+.canvasCell 
+ {
+  border: 1px solid black; 
+}
+
+.swatch {
+  display: block;
+  height: 25px;
+  width: 25px;
+  border: 1px solid black; 
+}
+
+.cell {
+
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+
+
+
+.canvasContainer{
+  float: right;
+  margin-top: -275px;
+  margin-right: 100px;
+
+}
+
+.canvasCell {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+
+}
