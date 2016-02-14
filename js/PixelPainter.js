@@ -1,46 +1,52 @@
-$(init);
+$(function(){
+  run();
+});
+
+function run (){
+  init();
+  var color = 'rgb(0, 0, 0)';
+}
 
 var pixelPainterContainer;
 
 function init(){
 pixelPainterContainer = $('#pixelPainter');//document.getElementById('pixelPainter');
-
-drawSwatches(swatches);
+// drawSwatches(swatches);
 drawSwatchGrid(4, 10);
 drawCanvasGrid(8, 8);
+
+createColorSwatch();
 }
-var swatches = function generateRandomColor(){
+
+function createColorSwatch(){
+  $('.cell').each(function(index, element){
+    
+    $(element).css('background-color', generateRandomColor());
+  });
+}
+
+ function generateRandomColor(){
   var red = Math.floor(Math.random()*256);
   var green = Math.floor(Math.random()*256);
   var blue = Math.floor(Math.random()*256);
-  return 'rgb ('+red+ ', '+green+', '+blue+')';
-};
-
-
-
-//accept an array of colors to generate swatches
-function drawSwatches (swatches)  {
-  //get swatch color
-  // var swatch = swatches;
-  //create div for swatch
-var swatchElement = $('<div class="grid"></div>');
-
-  
-  //setting swatches background color
-  // swatchElement.css('background-color', element);
-  //create click handler for this swatch
-  // var targetColor = swatchElement.css('background-color');
-  //when you click swatch, it changes the grid color
-  // swatchElement.on('click', function(event){
-  //   $('.canvasCell').css('background-color', targetColor);
-  // });
-
-$('.cell').each(function(index, element){
-  $(element).css("background-color", generateRandomColor());
-});
-  //appending swatch to pixel painter container
-  pixelPainterContainer.append(swatchElement);
+  return 'rgb('+red+ ', '+green+', '+blue+')';
 }
+
+  //targeting swatch container
+ // var swatchElement = $('<div class="container"></div>');
+  
+//   // setting swatches background color
+//   swatchElement.css('background-color', element);
+//   // create click handler for this swatch
+//    var targetColor = swatchElement.css('background-color');
+//   // when you click swatch, it changes the grid color
+//   swatchElement.on('click', function(event){
+//     $('.canvasCell').css('background-color', targetColor);
+//   });
+
+  // appending swatch to pixel painter container
+//   pixelPainterContainer.append(swatchElement);
+// }
 
 
 
@@ -61,6 +67,7 @@ function drawSwatchGrid (x, y) {
     for (var row = 0; row < x; row ++){
       var cellElement = $('<div />');
       cellElement.addClass('cell');
+      cellElement.css('background-color', generateRandomColor());
       rowArray.push(null);
       rowContainer.append(cellElement);
     }
@@ -69,9 +76,8 @@ function drawSwatchGrid (x, y) {
 
   }
   pixelPainterContainer.append(gridContainer);
-
-
 }
+
 // creating the canvas grid
 function drawCanvasGrid (x, y) {
   //create grid and grid container
@@ -101,15 +107,6 @@ function drawCanvasGrid (x, y) {
 
 
 }
-// var targetColor;
-// function selectColor (){
-//      $('swatchElement', this).on('click', function(){
-//        targetColor = .css('background-color', targetColor);
-//      })
-    
-//   }
-  
 
-function paintPixel (){
 
-}
+

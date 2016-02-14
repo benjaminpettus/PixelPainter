@@ -2,7 +2,7 @@
 .swatch, 
 .grid,
 .cell {
-  width: 108px;
+  width: 103px;
   border: 1px solid black;
 }
 .canvasGrid,
@@ -22,8 +22,8 @@
 .cell {
 
   display: inline-block;
-  height: 25px;
-  width: 25px;
+  height: 24px;
+  width: 24px;
 }
 
 
