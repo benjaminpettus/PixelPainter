@@ -3,7 +3,8 @@
 .grid,
 .cell {
   width: 103px;
-  border: 1px solid black;
+  height: 300px
+  
 }
 .canvasGrid,
 .canvasContainer,

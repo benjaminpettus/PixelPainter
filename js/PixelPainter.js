@@ -10,7 +10,9 @@ var pixelPainterContainer;
 var canvasCell;
 var color;
 var selectedColor;
-
+//send picture to server
+var savedCanvas;
+//
 function init(){
 pixelPainterContainer = $('#pixelPainter');//document.getElementById('pixelPainter');
 // drawSwatches(swatches);
@@ -21,6 +23,8 @@ paintCanvas();
 selectColor();
 clearButton();
 eraseButton();
+saveButton();
+deleteButton();
 }
 
 function selectColor() {
@@ -58,6 +62,33 @@ function eraseButton (){
   });
   $('.container').append(eraseButton);
 }
+
+function saveButton () {
+  var picture = [];
+  var add = $('<button/>')
+    .text('Save')
+    .click(function (events) {
+     $('.canvasCell').each(function(i, cell){
+        picture.push($(cell).css("background-color"));
+       // for(var j = 0; j < cells.length; j++){
+       //  console.log(cells[j]);
+       // }  
+      });
+   savedCanvas = picture;
+    }); 
+  $('.container').append(add);
+}
+
+
+function deleteButton() {
+  var remove = $('<button/>')
+    .text('Delete')
+    .click(function (events) {
+
+    });
+  $('.container').append(remove);
+}
+
 
  function generateRandomColor(){
   var red = Math.floor(Math.random()*256);
