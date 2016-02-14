@@ -4,25 +4,59 @@ $(function(){
 
 function run (){
   init();
-  var color = 'rgb(0, 0, 0)';
 }
-
+var body = document.body;
 var pixelPainterContainer;
+var canvasCell;
+var color;
+var selectedColor;
 
 function init(){
 pixelPainterContainer = $('#pixelPainter');//document.getElementById('pixelPainter');
 // drawSwatches(swatches);
 drawSwatchGrid(4, 10);
 drawCanvasGrid(8, 8);
-
 createColorSwatch();
+paintCanvas();
+selectColor();
+clearButton();
+eraseButton();
+}
+
+function selectColor() {
+ $('.cell').click(function (events){
+    selectedColor = $(this).css('background-color');
+  });
+}
+
+function paintCanvas(){
+  $('.canvasCell').click(function (events) {
+    $(this).css("background-color", selectedColor);
+  });
 }
 
 function createColorSwatch(){
   $('.cell').each(function(index, element){
-    
     $(element).css('background-color', generateRandomColor());
   });
+}
+
+function clearButton (){
+  var clearButton = $('<button/>')
+    .text('Clear')
+    .click(function (events) {
+    $('.canvasCell').css("background-color", "white"); 
+  });
+  $('.container').append(clearButton);
+}
+
+function eraseButton (){
+  var eraseButton = $('<button/>')
+  .text('Erase')
+  .click(function (events) {
+  selectedColor = "white";
+  });
+  $('.container').append(eraseButton);
 }
 
  function generateRandomColor(){
@@ -67,7 +101,6 @@ function drawSwatchGrid (x, y) {
     for (var row = 0; row < x; row ++){
       var cellElement = $('<div />');
       cellElement.addClass('cell');
-      cellElement.css('background-color', generateRandomColor());
       rowArray.push(null);
       rowContainer.append(cellElement);
     }
@@ -76,6 +109,7 @@ function drawSwatchGrid (x, y) {
 
   }
   pixelPainterContainer.append(gridContainer);
+  
 }
 
 // creating the canvas grid
